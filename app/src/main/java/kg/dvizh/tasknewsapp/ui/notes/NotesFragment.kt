@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import kg.dvizh.tasknewsapp.R
 import kg.dvizh.tasknewsapp.databinding.FragmentNotesBinding
 
 class NotesFragment : Fragment() {
@@ -19,6 +21,19 @@ class NotesFragment : Fragment() {
     ): View {
         binding = FragmentNotesBinding.inflate(LayoutInflater.from(context), container, false)
         return binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initListeners()
+    }
+
+
+    private fun initListeners() {
+        binding?.btnFab?.setOnClickListener {
+            findNavController().navigate(R.id.createNoteFragment)
+        }
     }
 
 }
