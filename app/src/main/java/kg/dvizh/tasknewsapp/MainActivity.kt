@@ -3,6 +3,7 @@ package kg.dvizh.tasknewsapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -16,40 +17,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val bottomView = findViewById<BottomNavigationView>(R.id.bottom_nav)
-
         val navController = findNavController(R.id.container)
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             if (destination.id == R.id.createNoteFragment) {
                 bottomView.visibility = View.GONE
             } else bottomView.visibility = View.VISIBLE
-//
-//            bottomView.visibility =
-//                if (destination.id == R.id.createNoteFragment) View.GONE else View.VISIBLE
         }
-        AppBarConfiguration(
-            navController.graph
-        )
+
         bottomView.setupWithNavController(navController)
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 }
